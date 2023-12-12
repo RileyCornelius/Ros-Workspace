@@ -1,38 +1,21 @@
-# VSCode ROS2 Workspace Template
+# VSCode ROS1 Workspace Template
 
-This template will get you set up using ROS2 with VSCode as your IDE.
+This template will get you set up using ROS1 in docker with VSCode as your IDE.
 
-See [how I develop with vscode and ros2](https://www.allisonthackston.com/articles/vscode_docker_ros2.html) for a more in-depth look on how to use this workspace.
+The template is a fork of Allison's ROS2 template. For more in-depth look on how her workspace is setup check out [this blog post](https://www.allisonthackston.com/articles/vscode_docker_ros2.html).
 
 ## Features
-
-### Style
-
-ROS2-approved formatters are included in the IDE.  
-
-* **c++** uncrustify; config from `ament_uncrustify`
-* **python** autopep8; vscode settings consistent with the [style guide](https://index.ros.org/doc/ros2/Contributing/Code-Style-Language-Versions/)
 
 ### Tasks
 
 There are many pre-defined tasks, see [`.vscode/tasks.json`](.vscode/tasks.json) for a complete listing.  Feel free to adjust them to suit your needs.  
 
-Take a look at [how I develop using tasks](https://www.allisonthackston.com/articles/vscode_tasks.html) for an idea on how I use tasks in my development.
+Take a look at [how she develop using tasks](https://www.allisonthackston.com/articles/vscode_tasks.html) for an idea on how she uses tasks in development.
 
 ### Debugging
 
-This template sets up debugging for python files, gdb for cpp programs and ROS launch files.  See [`.vscode/launch.json`](.vscode/launch.json) for configuration details.
+This template sets up debugging for python files.
 
-### Continuous Integration
-
-The template also comes with basic continuous integration set up. See [`.github/workflows/ros.yaml`](/.github/workflows/ros.yaml).
-
-To remove a linter just delete it's name from this line:
-
-```yaml
-      matrix:
-          linter: [cppcheck, cpplint, uncrustify, lint_cmake, xmllint, flake8, pep257]
-```
 
 ## How to use this template
 
@@ -52,7 +35,7 @@ Click on "use this template"
 
 ### Create your repository
 
-On the next dialog, name the repository you would like to start and decide if you want all of the branches, or just the latest LTS: humble.
+On the next dialog, name the repository you would like to start and decide if you want all of the branches, or just the latest LTS: melodic.
 
 ![template_new](https://user-images.githubusercontent.com/6098197/91332035-713ee980-e780-11ea-81d3-13b170f568b0.png)
 
@@ -76,7 +59,7 @@ If you don't see the pop-up, click on the little green square in the bottom left
 
 ![template_vscode_bottom](https://user-images.githubusercontent.com/6098197/91332638-5d47b780-e781-11ea-9fb6-4d134dbfc464.png)
 
-In the dialog, select "Remote Containers: Reopen in container"
+In the dialog, select "Dev Containers: Reopen in container"
 
 VSCode will build the dockerfile inside of `.devcontainer` for you.  If you open a terminal inside VSCode (Terminal->New Terminal), you should see that your username has been changed to `ros`, and the bottom left green corner should say "Dev Container"
 
@@ -84,17 +67,22 @@ VSCode will build the dockerfile inside of `.devcontainer` for you.  If you open
 
 ### Update the template with your code
 
-1. Specify the repositories you want to include in your workspace in `src/ros2.repos` or delete `src/ros2.repos` and develop directly within the workspace.
-2. If you are using a `ros2.repos` file, import the contents `Terminal->Run Task..->import from workspace file`
+1. Specify the repositories you want to include in your workspace in `src/ros.repos` or delete `src/ros.repos` and develop directly within the workspace.
+2. If you are using a `ros.repos` file, import the contents `Terminal->Run Task..->import from workspace file`
 3. Install dependencies `Terminal->Run Task..->install dependencies`
 4. (optional) Adjust scripts to your liking.  These scripts are used both within tasks and CI.
    * `setup.sh` The setup commands for your code.  Default to import workspace and install dependencies.
-   * `build.sh` The build commands for your code.  Default to `--merge-install` and `--symlink-install`
-   * `test.sh` The test commands for your code.
 5. Develop!
 
-
 ## FAQ
+
+### Different ROS1 Version
+
+#### Changing the docker image
+
+1. Open .devcontainer/Dockerfile
+2. Replace "FROM althack/ros:melodic-gazebo" with another ROS image
+3. ROS images can be found [here](https://github.com/athackst/dockerfiles/tree/main/ros)
 
 ### WSL2
 
